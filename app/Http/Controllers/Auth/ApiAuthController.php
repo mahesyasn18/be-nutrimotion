@@ -60,6 +60,30 @@ class ApiAuthController extends Controller
         return response($response, 200);
     }
 
+    public function updateProfile (Request $request) {
+        $validator = Validator::make($request->all(), [
+            'fullname' => [
+                'required',
+                'string',
+                'min:3'
+            ],
+            'email' => 'required|string|email|max:255|unique:users',
+
+        ]);
+        if ($validator->fails())
+        {
+            return response(['errors'=>$validator->errors()->all()], 422);
+        }
+        $user = User::where("id", $request->user()->id)->first();
+        $user->update($request->toArray());
+
+        $response = [
+            'data' => $user,
+            'message'   => 'Update berhasil',
+    ];
+        return response($response, 200);
+    }
+
     public function login (Request $request) {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',
@@ -74,15 +98,9 @@ class ApiAuthController extends Controller
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('Bearer')->accessToken;
                 $response = [
-                    "id" => $user->id,
-                    "fullname" => $user->fullname,
-                    "email" => $user->email,
-                    "weight" => $user->weight,
-                    "height" => $user->height,
-                    "gender" => $user->gender,
-                    "birthday" => $user->birthday,
-                    "token" => $token,
-                    'message' => 'Login berhasil'
+                    'data' => $user,
+                    'token' => $token,
+                    'message'   => 'Login berhasil',
                 ];
                 return response($response, 200);
             } else {

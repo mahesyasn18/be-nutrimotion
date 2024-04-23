@@ -30,6 +30,7 @@ Route::post('/register-admin', [ApiAuthController::class, 'registeradmin'])->nam
 
 Route::group(['middleware' => ['cors', 'json.response','auth:api']], function () {
     Route::post('/logout', [ApiAuthController::class, 'logout'])->name('logout.api');
+    Route::put('/update-profile', [ApiAuthController::class, 'updateProfile'])->name('update.profile.api');
 
     Route::post('/show-food', [UserFoodController::class, 'show']);
     Route::post('/check-food', [UserFoodController::class, 'checkfood']);
