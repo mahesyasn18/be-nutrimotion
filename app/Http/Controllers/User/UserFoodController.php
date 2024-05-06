@@ -99,6 +99,7 @@ class UserFoodController extends Controller
                  "food_name" => $food->food_name,
                  "picture" => $food->picture,
                  "food_type"=>$food->food_type,
+                 "food_category"=>$food->food_category,
                  "size"=>$food->size,
                  "barcode_number"=>$food->barcode_number,
                      "kalori" =>$food->nutritionFact->kalori,

@@ -13,6 +13,7 @@ class NutritionFact extends Model
     protected $fillable = [
         'food_id',
         'kalori',
+        'per_serving',
         'lemak_total',
         'lemak_jenuh',
         'protein',

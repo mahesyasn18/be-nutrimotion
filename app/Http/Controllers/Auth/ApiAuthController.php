@@ -58,7 +58,7 @@ class ApiAuthController extends Controller
                 'protein' => 100,
                 'lemak' => 120,
                 'serat' => 300,
-                'air' => 2000,
+                'air' => 0,
             ]);
         $token = $user->createToken('Bearer')->accessToken;
 
@@ -83,7 +83,7 @@ class ApiAuthController extends Controller
                 'string',
                 'min:3'
             ],
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
 
         ]);
         if ($validator->fails())

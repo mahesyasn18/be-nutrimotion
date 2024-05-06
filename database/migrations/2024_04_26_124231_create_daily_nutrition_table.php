@@ -17,11 +17,11 @@ return new class extends Migration
             $table->foreign("user_id")->references("id")->on("users")->onDelete("CASCADE");
             $table->date('tanggal');
             $table->integer('kalori')->nullable();
-            $table->decimal('karbohidrat', 8, 2)->nullable();
-            $table->decimal('protein', 8, 2)->nullable();
-            $table->decimal('lemak', 8, 2)->nullable();
-            $table->decimal('serat', 8, 2)->nullable();
-            $table->decimal('air', 8, 2)->nullable();
+            $table->integer('karbohidrat')->nullable();
+            $table->integer('protein')->nullable();
+            $table->integer('lemak')->nullable();
+            $table->integer('serat')->nullable();
+            $table->integer('air')->nullable();
             $table->timestamps();
         });
     }

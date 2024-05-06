@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('food', function (Blueprint $table) {
+        Schema::create('foods', function (Blueprint $table) {
             $table->id();
             $table->string('food_name');
             $table->text('picture');
-            $table->string('food_type');
+            $table->enum('food_type', ['berat', 'kemasan']);
+            $table->enum('food_category', ['makanan', 'minuman']);
             $table->decimal('size');
             $table->string('barcode_number')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**
