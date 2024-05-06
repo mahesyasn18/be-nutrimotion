@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('picture');
             $table->enum('food_type', ['berat', 'kemasan']);
             $table->enum('food_category', ['makanan', 'minuman']);
-            $table->decimal('size');
+            $table->integer('size');
             $table->string('barcode_number')->nullable();
             $table->timestamps();
         });

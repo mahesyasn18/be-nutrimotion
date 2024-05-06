@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\FoodController;
 use App\Http\Controllers\Auth\ApiAuthController;
 use App\Http\Controllers\User\UserFoodController;
+use App\Http\Controllers\User\UserWaterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,10 @@ Route::group(['middleware' => ['cors', 'json.response','auth:api']], function ()
 
     Route::post('/show-food', [UserFoodController::class, 'show']);
     Route::post('/check-food', [UserFoodController::class, 'checkfood']);
+
+
+    Route::get('/check-water', [UserWaterController::class, 'index']);
+    Route::get('/drink-water', [UserWaterController::class, 'update']);
 });
 
 Route::group( ['middleware' => ['auth:admins-api'] ],function(){
