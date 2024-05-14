@@ -50,16 +50,25 @@ class ApiAuthController extends Controller
         $request['remember_token'] = Str::random(10);
         $user = User::create($request->toArray());
 
-        DailyNutrition::create([
+        // hitung daily nutrition
+        $currentDate = Carbon::now();
+        $age = $currentDate->diffInYears(Carbon::parse($user->birthday));
+            if ($user->gender == 'Laki-laki'){
+                $calori = (10*$user->weight) + (6.25*$user->height) - (5*$age) + 5;
+            }else{
+                $calori = (10*$user->weight) + (6.25*$user->height) - (5*$age) - 161;
+            }
+            $carb = (0.45*$calori)/4;
+            DailyNutrition::create([
                 'user_id' => $user->id,
-                'tanggal' => Carbon::now(),
-                'kalori' => 80,
-                'karbohidrat' => 90,
-                'protein' => 100,
-                'lemak' => 120,
-                'serat' => 300,
-                'air' => 0,
+                'tanggal' => $currentDate,
+                'kalori' => $calori,
+                'karbohidrat' => (int)$carb,
+                'protein' => (int)$user->weight,
+                'lemak' => (int)$user->weight,
+                'air' => 8,
             ]);
+
         $token = $user->createToken('Bearer')->accessToken;
 
         $response = [

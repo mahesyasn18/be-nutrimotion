@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\FoodController;
 use App\Http\Controllers\Auth\ApiAuthController;
+use App\Http\Controllers\User\UserActivityController;
 use App\Http\Controllers\User\UserFoodController;
 use App\Http\Controllers\User\UserWaterController;
 use Illuminate\Http\Request;
@@ -41,10 +43,21 @@ Route::group(['middleware' => ['cors', 'json.response','auth:api']], function ()
 
     Route::get('/check-water', [UserWaterController::class, 'index']);
     Route::get('/drink-water', [UserWaterController::class, 'update']);
+
+    Route::get('/get-activity', [UserActivityController::class, 'index']);
+    Route::post('/detail/activity', [UserActivityController::class, 'show']);
+
+    Route::get('/user/set-goal/show', [UserActivityController::class, 'userGetGoal']);
+    Route::post('/user/set-goal', [UserActivityController::class, 'userStoreGoal']);
+    Route::get('/user/all-activity', [UserActivityController::class, 'allActivity']);
+    Route::post('/user/store-activity', [UserActivityController::class, 'storeDetailActivity']);
+    Route::get('/user/calory', [UserActivityController::class, 'getCalories']);
 });
 
 Route::group( ['middleware' => ['auth:admins-api'] ],function(){
     Route::post('/store-food', [FoodController::class, 'store']);
+    Route::get('/activity', [ActivityController::class, 'index']);
+    Route::post('/activity/store', [ActivityController::class, 'store']);
 });
 
 
