@@ -29,6 +29,7 @@ Route::post('/is-emaill-exist', [ApiAuthController::class, 'checkEmail']);
 Route::post('/login-admin', [ApiAuthController::class, 'loginadmin'])->name('login.api');
 Route::post('/register-admin', [ApiAuthController::class, 'registeradmin'])->name('register.api');
 
+// user group
 Route::group(['middleware' => ['cors', 'json.response','auth:api']], function () {
     Route::post('/logout', [ApiAuthController::class, 'logout'])->name('logout.api');
     Route::put('/update-profile', [ApiAuthController::class, 'updateProfile'])->name('update.profile.api');
@@ -38,13 +39,17 @@ Route::group(['middleware' => ['cors', 'json.response','auth:api']], function ()
     Route::post('/show-food', [UserFoodController::class, 'show']);
     Route::post('/check-food', [UserFoodController::class, 'checkfood']);
 
+    Route::post('/add-eaten-food', [UserFoodController::class, 'storeEatenFood']);
+    Route::get('/get-user-eaten-food', [UserFoodController::class, 'getUserEatenFood']);
 
     Route::get('/check-water', [UserWaterController::class, 'index']);
     Route::get('/drink-water', [UserWaterController::class, 'update']);
 });
 
+// admin group
 Route::group( ['middleware' => ['auth:admins-api'] ],function(){
     Route::post('/store-food', [FoodController::class, 'store']);
+    Route::post('/store-nutrifact', [FoodController::class, 'storeNutriFact']);
 });
 
 

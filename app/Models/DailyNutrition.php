@@ -29,4 +29,9 @@ class DailyNutrition extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function eatenFood()
+    {
+        return $this->hasMany(EatenFood::class);
+    }
 }

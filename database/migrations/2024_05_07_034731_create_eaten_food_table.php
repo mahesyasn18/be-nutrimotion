@@ -19,9 +19,10 @@ return new class extends Migration
             $table->enum('food_type', ['berat', 'kemasan']);
             $table->enum('food_category', ['makanan', 'minuman']);
             $table->integer('size');
-            $table->integer('kalori')->nullable();
-            $table->integer('lemak_total')->nullable();
-            $table->integer('protein')->nullable();
+            $table->integer('kalori');
+            $table->integer('karbohidrat');
+            $table->integer('lemak_total');
+            $table->integer('protein');
             $table->time('eat_time');
             $table->timestamps();
         });

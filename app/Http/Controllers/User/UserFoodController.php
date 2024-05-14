@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\DailyNutrition;
+use App\Models\EatenFood;
 use App\Models\Food;
 use App\Service\ResponseAPIService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UserFoodController extends Controller
@@ -27,12 +30,26 @@ class UserFoodController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function createNewFood(Request $request)
     {
-        //
+        $foodData = Validator::make($request->all(), [
+            'food_name' => 'required|string|max:255',
+            'picture' => 'required',
+            'food_type' => 'required|in:berat,kemasan',
+            'food_category' => 'required|in:makanan,minuman',
+            'size' => 'required|integer',
+            'barcode_number' => 'nullable|string',
+        ]);
+
+        $NutriFactData = Validator::make($request->all(), [
+            'kalori' => 'required|integer',
+            'lemak_total' => 'required|integer',
+            'lemak_jenuh' => 'required|integer',
+            'protein' => 'required|integer',
+            'karbohidrat_total' => 'required|integer',
+            'gula' => 'required|integer',
+        ]);
+        // beelum beres
     }
 
     /**
@@ -145,4 +162,51 @@ class UserFoodController extends Controller
          }
 
      }
+
+     public function storeEatenFood(Request $request)
+     {
+        $validator = Validator::make($request->all(), [
+            'food_name' => 'required|string|max:255',
+            'food_type' => 'required|in:berat,kemasan',
+            'food_category' => 'required|in:makanan,minuman',
+            'size' => 'required|integer',
+            'kalori' => 'required|integer',
+            'karbohidrat' => 'required|integer',
+            'lemak_total' => 'required|integer',
+            'protein' => 'required|integer',
+            'eat_time' => 'required|date_format:H:i:s'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->first()], 422);
+        }
+        $eatenFoodData = $validator->validated(); // Ambil data yang tervalidasi
+
+        $userId = $request->user()->id;
+        $dailyNut = DailyNutrition::where('user_id', $userId)
+                    ->whereDate('tanggal', now()->format('Y-m-d'))
+                    ->first();
+        
+        if (!$dailyNut) {
+            return response()->json([
+                'error' => 'Daily nutrition data not found for this user and date.',
+            ], 404); // Status 404 menunjukkan resource tidak ditemukan
+        }
+        // menyimpan referensi daily nut id
+        $eatenFoodData['daily_nutrition_id'] = $dailyNut->id;
+        $eatenFood = EatenFood::create($eatenFoodData);
+
+        return response()->json([
+            'message' => 'Eaten Food Successfully Registered!',
+            'data' => $eatenFood,
+        ], 200);
+     }
+
+     public function getUserEatenFood(Request $request)
+     {
+        $userId = $request->user()->id;
+        $dailyNut = DailyNutrition::where('user_id', $userId)->whereDate('tanggal', now()->format('Y-m-d'))->first();
+        $eatenFoodData = EatenFood::where('daily_nutrition_id', $dailyNut->id)->get();
+        return response()->json($eatenFoodData,200);
+     }
+
 }
