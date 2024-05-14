@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Food;
+use App\Models\NutritionFact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -95,5 +96,57 @@ class FoodController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function storeNutriFact(Request $request)
+    {
+         // Validasi input
+         $validatedData = $request->validate([
+            'food_id' => 'required|exists:foods,id',
+            'per_serving' => 'nullable|integer',
+            'kalori' => 'nullable|integer',
+            'lemak_total' => 'nullable|integer',
+            'lemak_jenuh' => 'nullable|integer',
+            'protein' => 'nullable|integer',
+            'karbohidrat_total' => 'nullable|integer',
+            'gula' => 'nullable|integer',
+            'garam' => 'nullable|integer',
+            'serat' => 'nullable|integer',
+            'vit_a' => 'nullable|integer',
+            'vit_d' => 'nullable|integer',
+            'vit_e' => 'nullable|integer',
+            'vit_k' => 'nullable|integer',
+            'vit_b1' => 'nullable|integer',
+            'vit_b2' => 'nullable|integer',
+            'vit_b3' => 'nullable|integer',
+            'vit_b5' => 'nullable|integer',
+            'vit_b6' => 'nullable|integer',
+            'folat' => 'nullable|integer',
+            'vit_b12' => 'nullable|integer',
+            'biotin' => 'nullable|integer',
+            'kolin' => 'nullable|integer',
+            'vit_c' => 'nullable|integer',
+            'kalsium' => 'nullable|integer',
+            'fosfor' => 'nullable|integer',
+            'magnesium' => 'nullable|integer',
+            'natrium' => 'nullable|integer',
+            'kalium' => 'nullable|integer',
+            'mangan' => 'nullable|integer',
+            'tembaga' => 'nullable|integer',
+            'kromium' => 'nullable|integer',
+            'besi' => 'nullable|integer',
+            'iodium' => 'nullable|integer',
+            'seng' => 'nullable|integer',
+            'selenium' => 'nullable|integer',
+            'fluor' => 'nullable|integer',
+        ]);
+
+        // Buat data baru
+        $nutritionFact = NutritionFact::create($validatedData);
+
+        return response()->json([
+            'message' => 'Nutrition fact created successfully',
+            'data' => $nutritionFact
+        ], 201); // Status code 201 untuk created
     }
 }

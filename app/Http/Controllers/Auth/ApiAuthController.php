@@ -202,7 +202,7 @@ class ApiAuthController extends Controller
                     "gender" => $user->gender,
                     "birthday" => $user->birthday,
                     'token' => $token,
-                    'message' => 'Registrasi berhasil',
+                    'message' => 'Login berhasil',
                 ];
                 return response($response, 200);
             } else {
