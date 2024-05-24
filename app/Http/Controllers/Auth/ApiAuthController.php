@@ -66,7 +66,7 @@ class ApiAuthController extends Controller
                 'karbohidrat' => (int)$carb,
                 'protein' => (int)$user->weight,
                 'lemak' => (int)$user->weight,
-                'air' => 8,
+                'air' => 0,
             ]);
 
         $token = $user->createToken('Bearer')->accessToken;
