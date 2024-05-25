@@ -46,7 +46,7 @@ Route::group(['middleware' => ['cors', 'json.response','auth:api']], function ()
     Route::post('/add-eaten-food', [UserFoodController::class, 'storeEatenFood']);
     Route::get('/get-user-eaten-food', [UserFoodController::class, 'getUserEatenFood']);
 
-    Route::get('/get-user-daily-nutrition', [UserFoodController::class, 'getUserDailyNutrition']);
+    Route::post('/get-user-daily-nutrition', [UserFoodController::class, 'getUserDailyNutrition']);
 
     Route::get('/check-water', [UserWaterController::class, 'index']);
     Route::get('/drink-water', [UserWaterController::class, 'update']);
