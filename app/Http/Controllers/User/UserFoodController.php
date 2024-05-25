@@ -156,8 +156,9 @@ class UserFoodController extends Controller
     {
         try {
             //code...
+            // dd($request);
             $userId = $request->user()->id;
-            $dailyNut = DailyNutrition::where('user_id', $userId)->whereDate('tanggal', now()->format('Y-m-d'))->first();
+            $dailyNut = DailyNutrition::where('user_id', $userId)->whereDate('tanggal', $request->date_time)->first();
             if (!$dailyNut) {
                 return response()->json([
                     'message' => 'Data tidak ditemukan'
