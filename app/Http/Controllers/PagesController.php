@@ -4,6 +4,48 @@ namespace App\Http\Controllers;
 
 class PagesController extends Controller
 {
+    public function myDashboards()
+    {
+        return view('pages/dashboard');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function elementsAvatar()
     {
         return view('pages/elements-avatar');
@@ -550,7 +592,7 @@ class PagesController extends Controller
 
     public function dashboardsCrmAnalytics()
     {
-        return view('pages/dashboards-crm-analytics');
+        return view('pages/dashboard');
     }
 
     public function dashboardsOrders()

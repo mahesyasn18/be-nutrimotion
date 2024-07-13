@@ -10,7 +10,7 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Nutrimotion @isset($title)
+    <title>{{ config('app.name') }} @isset($title)
             - {{ $title }}
         @endisset
     </title>
@@ -24,6 +24,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet" />
+
     <script>
         /**
          * THIS SCRIPT REQUIRED FOR PREVENT FLICKERING IN SOME BROWSERS
@@ -39,30 +40,13 @@
 </head>
 
 <body x-data x-bind="$store.global.documentBody"
-    class="@isset($isSidebarOpen) {{ $isSidebarOpen === 'true' ? 'is-sidebar-open' : '' }} @endisset @isset($isHeaderBlur) {{ $isHeaderBlur === 'true' ? 'is-header-blur' : '' }} @endisset @isset($hasMinSidebar) {{ $hasMinSidebar === 'true' ? 'has-min-sidebar' : '' }} @endisset  @isset($headerSticky) {{ $headerSticky === 'false' ? 'is-header-not-sticky' : '' }} @endisset">
+    class="@isset($isSidebarOpen) {{ $isSidebarOpen === 'true' ? 'is-sidebar-open' : '' }} @endisset @isset($isHeaderBlur) {{ $isHeaderBlur === 'true' ? 'is-header-blur' : '' }} @endisset @isset($hasMinSidebar) {{ $hasMinSidebar === 'true' ? 'has-min-sidebar' : '' }} @endisset @isset($headerSticky) {{ $headerSticky === 'false' ? 'is-header-not-sticky' : '' }} @endisset">
 
     <!-- App preloader-->
     <x-app-preloader></x-app-preloader>
 
     <!-- Page Wrapper -->
     <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900" x-cloak>
-        <!-- Sidebar -->
-        <div class="sidebar print:hidden">
-            <!-- Main Sidebar -->
-            <x-app-partials.main-sidebar></x-app-partials.main-sidebar>
-
-            <!-- Sidebar Panel -->
-            <x-app-partials.sidebar-panel></x-app-partials.sidebar-panel>
-        </div>
-
-        <!-- App Header -->
-        <x-app-partials.header></x-app-partials.header>
-
-        <!-- Mobile Searchbar -->
-        <x-app-partials.mobile-searchbar></x-app-partials.mobile-searchbar>
-
-        <!-- Right Sidebar -->
-        <x-app-partials.right-sidebar></x-app-partials.right-sidebar>
 
         {{ $slot }}
 

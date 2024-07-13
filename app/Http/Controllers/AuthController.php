@@ -33,10 +33,10 @@ class AuthController extends Controller
                 Auth::login($user);
                 return redirect()->route('index')->with('success', 'Login berhasil');
             } else {
-                return redirect()->back()->withErrors(['password' => 'Password mismatch'])->withInput();
+                return redirect()->back()->withErrors(['password' => 'Password tidak sesuai'])->withInput();
             }
         } else {
-            return redirect()->back()->withErrors(['email' => 'User does not exist'])->withInput();
+            return redirect()->back()->withErrors(['email' => 'Email tidak terdaftar'])->withInput();
         }
     }
 
