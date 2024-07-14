@@ -23,14 +23,17 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
-    Route::get('/', [PagesController::class, 'myDashboards'])->name('index');
+    Route::get('/', [PagesController::class, 'viewDashboard'])->name('index');
 
 
     //Dashboards
-    Route::get('/dashboard', [PagesController::class, 'myDashboards'])->name('my-dashboard');
+    Route::get('dashboard', [PagesController::class, 'viewDashboard'])->name('dashboard');
     //Users
+    Route::get('/users', [PagesController::class, 'viewUsers'])->name('users');
     //Foods
+    Route::get('/foods', [PagesController::class, 'viewFoods'])->name('foods');
     //Activities
+    Route::get('/activities', [PagesController::class, 'viewActivities'])->name('activities');
 
     Route::get('/elements/avatar', [PagesController::class, 'elementsAvatar'])->name('elements/avatar');
     Route::get('/elements/alert', [PagesController::class, 'elementsAlert'])->name('elements/alert');

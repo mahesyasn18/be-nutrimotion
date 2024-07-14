@@ -2,12 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\Activity;
+use App\Models\Food;
+use App\Models\User;
+
 class PagesController extends Controller
 {
-    public function myDashboards()
+    public function viewDashboard()
     {
-        return view('pages/dashboard');
+
+        $userCount = User::count();
+        $foodCount = Food::count();
+        $activityCount = Activity::count();
+
+        return view('pages/dashboard', compact('userCount', 'foodCount', 'activityCount'));
     }
+
+    public function viewUsers()
+    {
+        $users = User::all();
+        return view('pages/users', compact('users'));
+    }
+
+    public function viewFoods()
+    {
+        return view('pages/foods');
+    }
+
+    public function viewActivities()
+    {
+        return view('pages/activities   ');
+    }
+
 
 
 
