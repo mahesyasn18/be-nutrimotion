@@ -30,6 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', [PagesController::class, 'viewDashboard'])->name('dashboard');
     //Users
     Route::get('/users', [PagesController::class, 'viewUsers'])->name('users');
+    Route::get('/users/add-user', [PagesController::class, 'viewUserForm'])->name('add-user-form');
+
     //Foods
     Route::get('/foods', [PagesController::class, 'viewFoods'])->name('foods');
     //Activities

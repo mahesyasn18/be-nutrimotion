@@ -19,11 +19,19 @@ class PagesController extends Controller
         return view('pages/dashboard', compact('userCount', 'foodCount', 'activityCount'));
     }
 
+    //Uers
     public function viewUsers()
     {
         $users = User::all();
         return view('pages/users', compact('users'));
     }
+
+    public function viewUserForm()
+    {
+        $users = User::all();
+        return view('pages/add-users');
+    }
+
 
     public function viewFoods()
     {

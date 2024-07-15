@@ -6,6 +6,12 @@ export function initFormValidationExample() {
       blurred: false,
       validate: ["required"],
     },
+    number:{
+      value: "",
+      errorMessage: "",
+      blurred: false,
+      validate: ["required", "number"],
+    },
     email: {
       value: "",
       errorMessage: "",
@@ -22,7 +28,7 @@ export function initFormValidationExample() {
       value: "",
       errorMessage: "",
       blurred: false,
-      validate: ["required", "minLength:5", "maxLength:15"],
+      validate: ["required", "minLength:8", "maxLength:20"],
     },
     url: {
       value: "",

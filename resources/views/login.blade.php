@@ -2,9 +2,9 @@
     <div class="hidden w-full place-items-center lg:grid">
         <div class="w-full max-w-lg p-6">
             <img class="w-full" x-show="!$store.global.isDarkModeEnabled"
-                src="{{ asset('images/illustrations/dashboard-check.svg') }}" alt="image" />
+                src="{{ asset('images/illustrations/login.png') }}" alt="image" />
             <img class="w-full" x-show="$store.global.isDarkModeEnabled"
-                src="{{ asset('images/illustrations/dashboard-check-dark.svg') }}" alt="image" />
+                src="{{ asset('images/illustrations/login.png') }}" alt="image" />
         </div>
     </div>
     <main class="flex w-full flex-col items-center bg-white dark:bg-navy-700 lg:max-w-md">
@@ -13,10 +13,10 @@
                 <img class="mx-auto h-16 w-16 lg:hidden" src="{{ asset('images/app-logo.svg') }}" alt="logo" />
                 <div class="mt-4">
                     <h2 class="text-2xl font-semibold text-slate-600 dark:text-navy-100">
-                        Welcome Back
+                        Selamat Datang Kembali
                     </h2>
                     <p class="text-slate-400 dark:text-navy-300">
-                        Please sign in to continue
+                        Sign in untuk melanjutkan
                     </p>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                         <input
                             class="form-input peer w-full rounded-lg bg-slate-150 px-3 py-2 pl-9 ring-primary/50 placeholder:text-slate-400 hover:bg-slate-200 focus:ring dark:bg-navy-900/90 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-900 dark:focus:bg-navy-900"
                             placeholder="Username or email" type="text" name="email"
-                            value="{{ old('email') ?? 'help@piniastudio.com' }}" />
+                            value="{{ old('email') ?? 'example@gmail.com' }}" />
                         <span
                             class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-colors duration-200"
@@ -38,7 +38,21 @@
                         </span>
                     </label>
                     @error('email')
-                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        <div class="alert flex space-x-2 rounded-lg border border-error px-1 py-1 text-error text-tiny+ mt-2">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="size-4"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                            <p>{{ $message }}</p>
+                        </div>
                     @enderror
                 </div>
                 <div class="mt-4">
@@ -57,7 +71,21 @@
                         </span>
                     </label>
                     @error('password')
-                        <span class="text-tiny+ text-error">{{ $message }}</span>
+                        <div class="alert flex space-x-2 rounded-lg border border-error px-1 py-1 text-error text-tiny+ mt-2">
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="size-4"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                            <p>{{ $message }}</p>
+                        </div>
                     @enderror
                 </div>
 
@@ -73,7 +101,7 @@
                         Password?</a>
                 </div>
                 <button type="submit"
-                    class="btn mt-10 h-10 w-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                    class="btn mt-10 h-10 w-full bg-primary font-medium text-white hover:bg-[#60F166] focus:bg-[#60F166] active:bg-[#60F166] dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                     Sign In
                 </button>
             </form>
