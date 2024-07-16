@@ -6,7 +6,7 @@ export function initFormValidationExample() {
       blurred: false,
       validate: ["required"],
     },
-    number:{
+    number: {
       value: "",
       errorMessage: "",
       blurred: false,
@@ -57,8 +57,26 @@ export function initFormValidationExample() {
       blurred: false,
       validate: ["required", "endingWith:Z"],
     },
+    gender: {
+      value: "",
+      errorMessage: "",
+      blurred: false,
+      validate: ["required"],
+    },
+    dob: {
+      value: "",
+      errorMessage: "",
+      blurred: false,
+      validate: ["required"],
+    },
+    weight: {
+      value: "",
+      errorMessage: "",
+      blurred: false,
+      validate: ["required", "number"],
+    },
     getErrorMessage(value, rules) {
       return Iodine.assert(value, rules).error;
-    },
+    }
   };
 }

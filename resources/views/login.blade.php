@@ -10,7 +10,7 @@
     <main class="flex w-full flex-col items-center bg-white dark:bg-navy-700 lg:max-w-md">
         <div class="flex w-full max-w-sm grow flex-col justify-center p-5">
             <div class="text-center">
-                <img class="mx-auto h-16 w-16 lg:hidden" src="{{ asset('images/app-logo.svg') }}" alt="logo" />
+                <img class="mx-auto h-11 w-11 object-contain" src="{{ asset('images/logo.png') }}" alt="logo" />
                 <div class="mt-4">
                     <h2 class="text-2xl font-semibold text-slate-600 dark:text-navy-100">
                         Selamat Datang Kembali
@@ -26,8 +26,7 @@
                     <label class="relative flex">
                         <input
                             class="form-input peer w-full rounded-lg bg-slate-150 px-3 py-2 pl-9 ring-primary/50 placeholder:text-slate-400 hover:bg-slate-200 focus:ring dark:bg-navy-900/90 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-900 dark:focus:bg-navy-900"
-                            placeholder="Username or email" type="text" name="email"
-                            value="{{ old('email') ?? 'example@gmail.com' }}" />
+                            placeholder="Username or email" type="text" name="email" />
                         <span
                             class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-colors duration-200"
@@ -59,8 +58,7 @@
                     <label class="relative flex">
                         <input
                             class="form-input peer w-full rounded-lg bg-slate-150 px-3 py-2 pl-9 ring-primary/50 placeholder:text-slate-400 hover:bg-slate-200 focus:ring dark:bg-navy-900/90 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-900 dark:focus:bg-navy-900"
-                            placeholder="Password" type="password" name="password"
-                            value="{{ old('password') ?? 'password' }}" />
+                            placeholder="Password" type="password" name="password"/>
                         <span
                             class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-colors duration-200"
@@ -101,7 +99,7 @@
                         Password?</a>
                 </div>
                 <button type="submit"
-                    class="btn mt-10 h-10 w-full bg-primary font-medium text-white hover:bg-[#60F166] focus:bg-[#60F166] active:bg-[#60F166] dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                    class="btn mt-10 h-10 w-full bg-primary font-medium text-white hover:bg-[#60F166] focus:bg-[#60F166] active:bg-[#60F166]">
                     Sign In
                 </button>
             </form>

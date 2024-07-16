@@ -1,6 +1,7 @@
 <x-app-layout title="Users" is-header-blur="true">
     <!-- Main Content Wrapper -->
     <main class="main-content w-full px-[var(--margin-x)] pb-8">
+
         <div class="mt-6 flex flex-col items-center justify-between space-y-2 text-center sm:flex-row sm:space-y-0 sm:text-left">
             <div class="flex items-center space-x-4 py-5 lg:py-6">
                 <a class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-xl" href="{{ route('index') }}">
@@ -147,9 +148,13 @@
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">
-                                                                Delete
-                                                            </a>
+                                                            <form action="{{ route('user-destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">
+                                                                    Delete
+                                                                </button>
+                                                            </form>
                                                         </li>
                                                     </ul>
                                                 </div>

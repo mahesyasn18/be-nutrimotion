@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +32,14 @@ Route::middleware('auth')->group(function () {
 
     //Dashboards
     Route::get('dashboard', [PagesController::class, 'viewDashboard'])->name('dashboard');
+
     //Users
     Route::get('/users', [PagesController::class, 'viewUsers'])->name('users');
     Route::get('/users/add-user', [PagesController::class, 'viewUserForm'])->name('add-user-form');
+    Route::post('/users/add-user', [UserController::class, 'store'])->name('user-store');
+    //Route::put('/edit_user/{id}', [UserController::class, 'update'])->name('user-update');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('user-destroy');
+
 
     //Foods
     Route::get('/foods', [PagesController::class, 'viewFoods'])->name('foods');
