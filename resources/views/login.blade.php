@@ -99,7 +99,7 @@
                         Password?</a>
                 </div>
                 <button type="submit"
-                    class="btn mt-10 h-10 w-full bg-primary font-medium text-white hover:bg-[#60F166] focus:bg-[#60F166] active:bg-[#60F166]">
+                    class="btn mt-10 h-10 w-full bg-primary font-medium text-white hover:bg-green-500 focus:bg-green-500 active:bg-green-500">
                     Sign In
                 </button>
             </form>

@@ -12,10 +12,10 @@
                     404
                 </p>
                 <p class="mt-6 text-xl font-semibold text-slate-800 dark:text-navy-50 lg:mt-10 lg:text-3xl">
-                    Oops. This Page Not Found.
+                    Oops, data not found.
                 </p>
                 <p class="pt-2 text-slate-500 dark:text-navy-200 lg:text-lg">
-                    This page you are looking not available
+                    Data tidak ditemukan.
                 </p>
 
                 <button

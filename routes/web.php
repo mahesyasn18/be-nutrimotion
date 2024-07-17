@@ -36,8 +36,9 @@ Route::middleware('auth')->group(function () {
     //Users
     Route::get('/users', [PagesController::class, 'viewUsers'])->name('users');
     Route::get('/users/add-user', [PagesController::class, 'viewUserForm'])->name('add-user-form');
+    Route::get('/users/edit-user/{id}', [PagesController::class, 'viewUserUpdateForm'])->name('edit-user-form');
     Route::post('/users/add-user', [UserController::class, 'store'])->name('user-store');
-    //Route::put('/edit_user/{id}', [UserController::class, 'update'])->name('user-update');
+    Route::put('/users/edit-user/{id}', [UserController::class, 'update'])->name('user-update');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('user-destroy');
 
 

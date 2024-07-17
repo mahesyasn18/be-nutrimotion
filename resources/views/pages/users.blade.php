@@ -2,7 +2,53 @@
     <!-- Main Content Wrapper -->
     <main class="main-content w-full px-[var(--margin-x)] pb-8">
 
-        <div class="mt-6 flex flex-col items-center justify-between space-y-2 text-center sm:flex-row sm:space-y-0 sm:text-left">
+        <!-- Notification -->
+        <div id="delete_success" class="fixed bottom-5 right-5 bg-green-500 text-white px-6 py-2 rounded-md shadow-md hidden transition-all duration-300 z-1">
+            User deleted successfully.
+        </div>
+        <div id="delete_failed" class="fixed bottom-5 right-5 bg-red-500 text-white px-6 py-2 rounded-md shadow-md hidden transition-all duration-300 z-1">
+            Failed to delete user.
+        </div>
+        <div id="create_success" class="fixed bottom-5 right-5 bg-green-500 text-white px-6 py-2 rounded-md shadow-md hidden transition-all duration-300 z-1">
+            User created successfully.
+        </div>
+        <div id="create_failed" class="fixed bottom-5 right-5 bg-red-500 text-white px-6 py-2 rounded-md shadow-md hidden transition-all duration-300 z-1">
+            Failed to create user.
+        </div>
+        <div id="edit_success" class="fixed bottom-5 right-5 bg-green-500 text-white px-6 py-2 rounded-md shadow-md hidden transition-all duration-300 z-1">
+            User updated successfully.
+        </div>
+        <div id="edit_failed" class="fixed bottom-5 right-5 bg-red-500 text-white px-6 py-2 rounded-md shadow-md hidden transition-all duration-300 z-1">
+            Failed to update user.
+        </div>
+
+
+        <script>
+            // Menampilkan notifikasi sesuai dengan session yang ada
+            @if(session('delete_success'))
+                showNotification('delete_success');
+            @elseif(session('delete_failed'))
+                showNotification('delete_failed');
+            @elseif(session('create_success'))
+                showNotification('create_success');
+            @elseif(session('create_failed'))
+                showNotification('create_failed');
+            @elseif(session('edit_success'))
+                showNotification('edit_success');
+            @elseif(session('edit_failed'))
+                showNotification('edit_failed');
+            @endif
+        
+            // Fungsi untuk menampilkan notifikasi dengan animasi
+            function showNotification(id) {
+                document.getElementById(id).classList.remove('hidden');
+                setTimeout(function() {
+                    document.getElementById(id).classList.add('hidden');
+                }, 5000); // Hilangkan notifikasi setelah 3 detik
+            }
+        </script>
+
+        <div class="mt-3 flex flex-col items-center justify-between space-y-2 text-center sm:flex-row sm:space-y-0 sm:text-left">
             <div class="flex items-center space-x-4 py-5 lg:py-6">
                 <a class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-xl" href="{{ route('index') }}">
                     Nutrimotion
@@ -143,7 +189,7 @@
                                                 <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
                                                     <ul>
                                                         <li>
-                                                            <a href="#" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">
+                                                            <a href="{{ route('edit-user-form', $user->id) }}" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">
                                                                 Edit
                                                             </a>
                                                         </li>
@@ -206,11 +252,11 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div class="text-right">
+                                                {{-- <div class="text-right">
                                                     <button @click="expanded = null" class="btn mt-2 h-8 rounded px-3 text-xs+ font-medium text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
                                                         Hide
                                                     </button>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </td>

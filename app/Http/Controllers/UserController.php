@@ -29,10 +29,10 @@ class UserController extends Controller
             // Buat user baru
             User::create($validatedData);
 
-            return redirect()->route('users')->with('success', 'User created successfully.');
+            return redirect()->route('users')->with('create_success', 'User created successfully.');
         } catch (\Exception $e) {
             dd($e->getMessage());
-            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
+            return redirect()->back()->withErrors(['create_failed' => $e->getMessage()])->withInput();
         }
     }
 
@@ -53,10 +53,10 @@ class UserController extends Controller
 
             $user->update($validatedData);
 
-            return redirect()->route('users')->with('success', 'User updated successfully.');
+            return redirect()->route('users')->with('edit_success', 'User updated successfully.');
         } catch (\Exception $e) {
-            dd($e->getMessage());
-            return redirect()->route('edit_user', $id)->with('error', 'Failed to update user: ' . $e->getMessage());
+            // dd($e->getMessage());
+            return redirect()->route('edit-user-form', ['id' => $id])->with('edit_failed', 'Failed to update user.');
         }
     }
 
@@ -69,7 +69,7 @@ class UserController extends Controller
 
             return redirect()->route('users')->with('delete_success', 'User deleted successfully.');
         } catch (\Exception $e) {
-            return redirect()->route('users')->with('delete_failed', 'User deleted successfully.');
+            return redirect()->route('users')->with('delete_failed', 'Failed to delete user.');
         }
     }
 

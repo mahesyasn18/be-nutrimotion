@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use App\Models\Food;
 use App\Models\User;
+use Symfony\Component\HttpFoundation\Request;
 
 class PagesController extends Controller
 {
@@ -31,6 +32,20 @@ class PagesController extends Controller
         $users = User::all();
         return view('pages/add-users');
     }
+
+    public function viewUserUpdateForm(Request $request, $id)
+    {
+        // Menggunakan $id dari parameter untuk mencari user
+        $user = User::find($id);
+
+        if (!$user) {
+            return view('pages/layouts-error-404-2');
+        }
+
+        // Mengirim data user ke view 'pages/edit-users'
+        return view('pages/edit-users', compact('user'));
+    }
+
 
 
     public function viewFoods()
