@@ -32,7 +32,6 @@ class FoodController extends Controller
     public function store(Request $request)
     {
         try {
-
             // Validasi input dari request, termasuk validasi untuk file gambar
             $validatedData = $request->validate([
                 'brand' => 'nullable|string',
@@ -53,7 +52,6 @@ class FoodController extends Controller
                 // Dapatkan URL lengkap untuk gambar yang disimpan
                 $url = Storage::url($path);
 
-
                 // Simpan URL gambar ke dalam data yang akan disimpan
                 $validatedData['picture'] = $url;
             }
@@ -62,17 +60,27 @@ class FoodController extends Controller
             $food = Food::create($validatedData);
 
             // Mengembalikan response
-            return response()->json([
-                'message' => 'Food created successfully',
-                'data' => $food
-            ], 201);
-
-            return redirect()->route('foods')->with('create_success', 'Food created successfully.');
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => 'Food created successfully',
+                    'data' => $food
+                ], 201);
+            } else {
+                return redirect()->route('foods')->with('create_success', 'Food created successfully.');
+            }
         } catch (\Exception $e) {
-            dd($e->getMessage());
-            return redirect()->route('add-food-form')->with('create_failed', 'Failed to create food.');
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => 'Failed to create food',
+                    'error' => $e->getMessage()
+                ], 500);
+            } else {
+                dd($e->getMessage());
+                return redirect()->route('add-food-form')->with('create_failed', 'Failed to create food.');
+            }
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -101,9 +109,17 @@ class FoodController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        try {
+            $food = food::findOrFail($id);
+
+            $food->delete();
+
+            return redirect()->route('foods')->with('delete_success', 'food deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('foods')->with('delete_failed', 'Failed to delete food.');
+        }
     }
 
     public function storeNutriFact(Request $request)

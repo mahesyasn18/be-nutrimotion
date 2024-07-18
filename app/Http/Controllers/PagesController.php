@@ -46,9 +46,72 @@ class PagesController extends Controller
     //Foods
     public function viewFoods()
     {
-        $foods = Food::all();
-        return view('pages/foods', compact('foods'));
+        $foods = Food::with('nutritionFact')->get(); // Use get() to retrieve a collection of foods
+        $totalNutrition = [];
+
+        // Iterate through each food
+        foreach ($foods as $food) {
+            $nutritionFact = $food->nutritionFact;
+
+            // Initialize total nutrition for this food
+            $foodTotalNutrition = 0;
+
+            // Check if nutritionFact exists and calculate the total for this food
+            if ($nutritionFact) {
+                foreach ($nutritionFact->toArray() as $key => $value) {
+                    // Skip the "food_id" field
+                    if ($key === 'food_id') {
+                        continue;
+                    }
+
+                    // Check if the value is numeric and sum it up
+                    if (is_numeric($value)) {
+                        $foodTotalNutrition += $value;
+                    }
+                }
+            }
+
+            // Store the total nutrition for this food
+            $totalNutrition[$food->id] = $foodTotalNutrition;
+        }
+
+        return view('pages.foods', compact('foods', 'totalNutrition'));
     }
+
+
+    public function viewFoodDetail(Request $request, $id)
+    {
+        $food = Food::with('nutritionFact')->find($id);
+
+        if (!$food) {
+            return view('pages.layouts-error-404-2');
+        }
+
+        $nutritionFact = $food->nutritionFact;
+
+        $totalNutrition = 0;
+
+        // Check if nutritionFact exists and calculate the total
+        if ($nutritionFact) {
+            foreach ($nutritionFact->toArray() as $key => $value) {
+                // Skip the "food_id" field
+                if ($key === 'food_id') {
+                    continue;
+                }
+
+                // Check if the value is numeric and sum it up
+                if (is_numeric($value)) {
+                    $totalNutrition += $value;
+                }
+            }
+        }
+
+        return view('pages.detail-food', compact('food', 'totalNutrition'));
+    }
+
+
+
+
 
     public function viewFoodForm()
     {
@@ -63,6 +126,12 @@ class PagesController extends Controller
             return view('pages/layouts-error-404-2');
         }
         return view('pages/edit-foods', compact('food'));
+    }
+
+    //Nutritions
+    public function viewNutritions()
+    {
+        return view('pages/nutritions   ');
     }
 
     public function viewActivities()

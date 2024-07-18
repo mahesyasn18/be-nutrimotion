@@ -1276,6 +1276,59 @@ export const charts = {
     },
   },
 
+  earningDark: {
+    colors: ["#1A2130"],
+    series: [
+      {
+        name: "Earning",
+        data: [0, 20, 50, 10],
+      },
+    ],
+    chart: {
+      type: "line",
+      stacked: false,
+      height: 60,
+      parentHeightOffset: 0,
+      toolbar: {
+        show: false,
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    grid: {
+      padding: {
+        left: 0,
+        right: 0,
+        top: -28,
+      },
+    },
+    stroke: {
+      width: 3,
+      curve: "smooth",
+    },
+    tooltip: {
+      shared: true,
+    },
+    legend: {
+      show: false,
+    },
+    yaxis: {
+      show: false,
+    },
+    xaxis: {
+      labels: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      },
+      axisBorder: {
+        show: false,
+      },
+    },
+  },
+
   // Income Personal Dashboard
   incomePersonal: {
     series: [
@@ -1334,6 +1387,7 @@ export const charts = {
       },
     },
   },
+  
 
   // Courses Timeline
   courseTimeline: {

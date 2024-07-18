@@ -193,8 +193,13 @@
                                                                 Edit
                                                             </a>
                                                         </li>
+                                                        {{-- <li>
+                                                            <a href="{{ route('food-detail', $food->id) }}" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">
+                                                                Detail
+                                                            </a>
+                                                        </li> --}}
                                                         <li>
-                                                            <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this food?');">
+                                                            <form action="{{ route('food-destroy', $food->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this food?');">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">
@@ -225,6 +230,9 @@
                                                                 <th class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5">
                                                                     BARCODE
                                                                 </th>
+                                                                <th class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5">
+                                                                    TOTAL NUTRITIONS
+                                                                </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -241,6 +249,9 @@
                                                                     @else
                                                                         {{ $food->barcode_number }}
                                                                     @endif
+                                                                </td>
+                                                                <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                                                                    {{ $totalNutrition[$food->id] }} gram
                                                                 </td>
                                                             </tr>
                                                         </tbody>
