@@ -29,28 +29,40 @@ class PagesController extends Controller
 
     public function viewUserForm()
     {
-        $users = User::all();
         return view('pages/add-users');
     }
 
     public function viewUserUpdateForm(Request $request, $id)
     {
-        // Menggunakan $id dari parameter untuk mencari user
         $user = User::find($id);
 
         if (!$user) {
             return view('pages/layouts-error-404-2');
         }
-
-        // Mengirim data user ke view 'pages/edit-users'
         return view('pages/edit-users', compact('user'));
     }
 
 
-
+    //Foods
     public function viewFoods()
     {
-        return view('pages/foods');
+        $foods = Food::all();
+        return view('pages/foods', compact('foods'));
+    }
+
+    public function viewFoodForm()
+    {
+        return view('pages/add-foods');
+    }
+
+    public function viewFoodUpdateForm(Request $request, $id)
+    {
+        $food = Food::find($id);
+
+        if (!$food) {
+            return view('pages/layouts-error-404-2');
+        }
+        return view('pages/edit-foods', compact('food'));
     }
 
     public function viewActivities()

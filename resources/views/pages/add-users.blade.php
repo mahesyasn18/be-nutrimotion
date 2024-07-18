@@ -50,11 +50,10 @@
                 <div>
                     <div class="flex justify-center space-x-2">
                         <button class="btn min-w-[7rem] bg-primary font-medium text-white hover:bg-[#60F166] focus:bg-[#60F166] active:bg-[#60F166]">
-                            Save
+                            Add
                         </button>
                     </div>
                 </div>
-                
                 
             </div>
     
@@ -250,7 +249,7 @@
                                 </div>
                                 <span class="relative mt-1.5 flex">
                                     <input
-                                        x-init="$el._x_flatpickr = flatpickr($el)"
+                                        x-init="$el._x_flatpickr = flatpickr($el,{altInput: true,altFormat: 'F j, Y',dateFormat: 'Y-m-d'})"
                                         x-effect="dob.errorMessage = getErrorMessage(dob.value, dob.validate)"
                                         class="form-input peer w-full rounded-lg border bg-transparent px-3 py-2 pl-9 placeholder:text-slate-400/70"
                                         placeholder="Choose date..."

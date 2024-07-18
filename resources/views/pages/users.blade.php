@@ -246,7 +246,7 @@
                                                                     @endif
                                                                 </td>
                                                                 <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                                                                    {{ $user->birthday }}
+                                                                    {{ \Carbon\Carbon::parse($user->birthday)->format('F j, Y') }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>

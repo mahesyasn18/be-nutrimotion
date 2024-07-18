@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\Admin\FoodController;
 
 
 
@@ -44,6 +45,10 @@ Route::middleware('auth')->group(function () {
 
     //Foods
     Route::get('/foods', [PagesController::class, 'viewFoods'])->name('foods');
+    Route::get('/foods/add-food', [PagesController::class, 'viewFoodForm'])->name('add-food-form');
+    Route::get('/foods/edit-food/{id}', [PagesController::class, 'viewFoodUpdateForm'])->name('edit-food-form');
+    Route::post('/foods/add-food', [FoodController::class, 'store'])->name('food-store');
+
     //Activities
     Route::get('/activities', [PagesController::class, 'viewActivities'])->name('activities');
 

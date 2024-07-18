@@ -56,7 +56,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                     <li class="flex items-center space-x-2">
-                        <a class="text-primary hover:underline" href="{{ route('add-user-form') }}">Edit User</a> 
+                        <a class="text-primary hover:underline" href="{{ route('edit-user-form', $user->id) }}">Edit User</a> 
                     </li>
                 </ul>
             </div>

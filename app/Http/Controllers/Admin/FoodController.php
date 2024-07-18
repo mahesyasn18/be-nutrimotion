@@ -31,39 +31,47 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi input dari request, termasuk validasi untuk file gambar
-        $validatedData = $request->validate([
-            'brand' => 'nullable|string',
-            'food_name' => 'required|string',
-            'food_type' => 'required|string',
-            'size' => 'required|numeric',
-            'barcode_number' => 'required',
-            'picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi untuk file gambar
-        ]);
+        try {
 
-        // Jika ada file gambar yang diunggah
-        if ($request->hasFile('picture')) {
-            $photo = $request->file('picture');
+            // Validasi input dari request, termasuk validasi untuk file gambar
+            $validatedData = $request->validate([
+                'brand' => 'nullable|string',
+                'food_name' => 'required|string',
+                'food_type' => 'required|string',
+                'size' => 'required|numeric',
+                'barcode_number' => 'nullable',
+                'picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi untuk file gambar
+            ]);
 
-            // Simpan foto ke dalam penyimpanan dengan nama file yang unik
-            $path = Storage::putFile('public/food', $photo);
+            // Jika ada file gambar yang diunggah
+            if ($request->hasFile('picture')) {
+                $photo = $request->file('picture');
 
-            // Dapatkan URL lengkap untuk gambar yang disimpan
-            $url = Storage::url($path);
+                // Simpan foto ke dalam penyimpanan dengan nama file yang unik
+                $path = Storage::putFile('public/food', $photo);
+
+                // Dapatkan URL lengkap untuk gambar yang disimpan
+                $url = Storage::url($path);
 
 
-            // Simpan URL gambar ke dalam data yang akan disimpan
-            $validatedData['picture'] = $url;
+                // Simpan URL gambar ke dalam data yang akan disimpan
+                $validatedData['picture'] = $url;
+            }
+
+            // Membuat data baru dengan gambar jika ada
+            $food = Food::create($validatedData);
+
+            // Mengembalikan response
+            return response()->json([
+                'message' => 'Food created successfully',
+                'data' => $food
+            ], 201);
+
+            return redirect()->route('foods')->with('create_success', 'Food created successfully.');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            return redirect()->route('add-food-form')->with('create_failed', 'Failed to create food.');
         }
-
-        // Membuat data baru dengan gambar jika ada
-        $food = Food::create($validatedData);
-
-        // Mengembalikan response
-        return response()->json([
-            'message' => 'Food created successfully',
-            'data' => $food
-        ], 201);
     }
 
     /**
