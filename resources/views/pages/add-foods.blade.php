@@ -143,7 +143,7 @@
                         <div>
                             <span>Images</span>
                             <div class="filepond fp-bordered fp-bg-filled">
-                                <input type="file" name="picture" id="picture" x-init="$el._x_filepond = FilePond.create($el)"/>
+                                <input class="mt-1.5" type="file" name="picture" id="picture"/>
                             </div>
                         </div>
                         

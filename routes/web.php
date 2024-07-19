@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/foods/edit-food/{id}', [FoodController::class, 'update'])->name('food-update');
     Route::delete('/foods/{id}', [FoodController::class, 'destroy'])->name('food-destroy');
     
-    // Route::get('/foods/food-detail/{id}', [PagesController::class, 'viewFoodDetail'])->name('food-detail');
+    Route::get('/foods/food-detail/{id}', [PagesController::class, 'viewFoodDetail'])->name('food-detail');
 
     Route::get('/nutritions', [PagesController::class, 'viewNutritions'])->name('nutritions');
 

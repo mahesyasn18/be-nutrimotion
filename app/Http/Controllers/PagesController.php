@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use App\Models\Food;
+use App\Models\NutritionFact;
 use App\Models\User;
+use Illuminate\Support\Facades\Schema;
 use Symfony\Component\HttpFoundation\Request;
 
 class PagesController extends Controller
@@ -131,8 +133,20 @@ class PagesController extends Controller
     //Nutritions
     public function viewNutritions()
     {
-        return view('pages/nutritions   ');
+        $columns = Schema::getColumnListing('nutrition_facts');
+
+        $excludeColumns = ['food_id', 'per_serving', 'created_at', 'updated_at'];
+
+        // Filter kolom untuk mengecualikan kolom tertentu
+        $columns = array_filter($columns, function($column) use ($excludeColumns) {
+            return !in_array($column, $excludeColumns);
+        });
+
+        $nutritions = NutritionFact::with('food')->get();
+
+        return view('pages/nutritions', compact('nutritions', 'columns'));
     }
+
 
     public function viewActivities()
     {

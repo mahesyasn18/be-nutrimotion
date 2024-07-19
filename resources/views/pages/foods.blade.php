@@ -144,7 +144,11 @@
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                         <div class="avatar flex">
-                                            <img class="rounded-full" src="{{asset('images/illustrations/food.png')}}" alt="avatar"/>
+                                            @if ($food->picture)
+                                                <img class="rounded-full" src="{{ $food->picture }}" alt="Food Image">
+                                            @else
+                                                <img class="rounded-full" src="{{asset('images/illustrations/add_foods.png')}}" alt="avatar"/>
+                                            @endif
                                         </div>
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-3 font-medium text-slate-700 dark:text-navy-100 sm:px-5">
@@ -193,11 +197,11 @@
                                                                 Edit
                                                             </a>
                                                         </li>
-                                                        {{-- <li>
+                                                        <li>
                                                             <a href="{{ route('food-detail', $food->id) }}" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">
                                                                 Detail
                                                             </a>
-                                                        </li> --}}
+                                                        </li>
                                                         <li>
                                                             <form action="{{ route('food-destroy', $food->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this food?');">
                                                                 @csrf
