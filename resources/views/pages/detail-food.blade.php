@@ -64,10 +64,11 @@
                             </p>
                         </div>
                     </div>
+                    <hr class="border">
                     <div class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter">
-                        <div class="h-2 w-2 rounded-full bg-primary dark:bg-accent"></div>
+                        <i class='bx bx-barcode-reader text-2xl'></i>
                         <div class="flex space-x-1 text-xs leading-6">
-                            <span class="font-medium text-slate-700 dark:text-navy-100">Barcode -- </span>
+                            <span class="font-medium text-sm+ text-slate-700 dark:text-navy-100">Barcode : </span>
                             <span>
                                 @if ($food->barcode_number == NULL)
                                     N/A
@@ -165,8 +166,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -178,13 +177,11 @@
                     <h3 class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100 lg:text-lg">
                         Other Nutritions
                     </h3>
-                    <p class="mt-3 grow">
-                        Informasi kandungan gizi lainnya terkait makanan.
+                    <p class="mt-3 grow text-xs">
+                        Penting untuk memahami komposisi dan nilai <span class="font-semibold">nutrisi</span> dari makanan yang dikonsumsi.
                     </p>
                     <div class="mt-3 flex items-center space-x-2">
-                        <div class="flex h-15 w-10 items-center justify-center rounded-full bg-success/15 text-success">
-                            <i class='bx bxs-chevrons-right text-2xl'></i>
-                        </div>
+                        <i class='bx bxs-chevrons-right text-xl text-success'></i>
                     </div>
                 </div>
                 <div class="scrollbar-sm mt-5 flex space-x-4 overflow-x-auto px-4 sm:px-5 lg:mt-0 lg:pl-0">
@@ -210,11 +207,7 @@
                         </div>
                     @endforeach
                 </div>
-                
             </div>
-
         </div>
-
-        
     </main>
 </x-app-layout>

@@ -49,6 +49,9 @@
                                                         <th class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5">
                                                             FOOD NAME
                                                         </th>
+                                                        <th class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5">
+                                                            ACTION
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -62,7 +65,9 @@
                                                                     {{ $nutrition->food->food_name }}
                                                                 </td>
                                                                 <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                                                                    <a href="{{ route('food-detail', $nutrition->food->id) }}"><i class='bx bx-chevron-right text-2xl text-blue-400 hover:text-blue-600'></i></a>
+                                                                    <a href="{{ route('food-detail', $nutrition->food->id) }}">
+                                                                        <p class="text-blue-400 hover:text-blue-500 hover:underline">Detail</p>
+                                                                    </a>
                                                                 </td>
                                                             </tr>
                                                         @endif
@@ -77,6 +82,6 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+        </div>                
     </main>
 </x-app-layout>

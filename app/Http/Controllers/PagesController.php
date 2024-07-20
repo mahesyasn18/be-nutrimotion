@@ -93,11 +93,14 @@ class PagesController extends Controller
 
         $totalNutrition = 0;
 
+        // List of columns to exclude from the total calculation
+        $excludedColumns = ['food_id', 'per_serving', 'lemak_jenuh', 'created_at', 'updated_at'];
+
         // Check if nutritionFact exists and calculate the total
         if ($nutritionFact) {
             foreach ($nutritionFact->toArray() as $key => $value) {
-                // Skip the "food_id" field
-                if ($key === 'food_id') {
+                // Skip the columns specified in the excluded list
+                if (in_array($key, $excludedColumns)) {
                     continue;
                 }
 
@@ -115,6 +118,7 @@ class PagesController extends Controller
 
 
 
+
     public function viewFoodForm()
     {
         return view('pages/add-foods');
@@ -122,30 +126,46 @@ class PagesController extends Controller
 
     public function viewFoodUpdateForm(Request $request, $id)
     {
-        $food = Food::find($id);
+        // Find the Food with its associated NutritionFact
+        $food = Food::with('nutritionFact')->find($id);
 
+        // Check if the food exists
         if (!$food) {
             return view('pages/layouts-error-404-2');
         }
+
         return view('pages/edit-foods', compact('food'));
     }
 
-    //Nutritions
-    public function viewNutritions()
+
+    public function viewNutritions(Request $request)
     {
         $columns = Schema::getColumnListing('nutrition_facts');
-
         $excludeColumns = ['food_id', 'per_serving', 'created_at', 'updated_at'];
 
-        // Filter kolom untuk mengecualikan kolom tertentu
+        // Filter columns
         $columns = array_filter($columns, function($column) use ($excludeColumns) {
             return !in_array($column, $excludeColumns);
         });
 
-        $nutritions = NutritionFact::with('food')->get();
+        $selectedColumn = $request->input('column'); // Use input() instead of query()
 
-        return view('pages/nutritions', compact('nutritions', 'columns'));
+        // Validate the selected column
+        if (!in_array($selectedColumn, $columns)) {
+            $selectedColumn = null; // or set a default column
+        }
+
+        $nutritionsQuery = NutritionFact::with('food');
+        
+        if ($selectedColumn) {
+            $nutritionsQuery->whereNotNull($selectedColumn);
+        }
+
+        $nutritions = $nutritionsQuery->get();
+
+        return view('pages/nutritions', compact('nutritions', 'columns', 'selectedColumn'));
     }
+
 
 
     public function viewActivities()

@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/foods/food-detail/{id}', [PagesController::class, 'viewFoodDetail'])->name('food-detail');
 
-    Route::get('/nutritions', [PagesController::class, 'viewNutritions'])->name('nutritions');
+    // Route::get('/nutritions', [PagesController::class, 'viewNutritions'])->name('nutritions');
 
     //Activities
     Route::get('/activities', [PagesController::class, 'viewActivities'])->name('activities');
