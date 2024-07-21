@@ -84,7 +84,7 @@
                                                         <input
                                                         x-effect="username.errorMessage = getErrorMessage(username.value, username.validate)"
                                                         class="form-input mt-1.5 w-full rounded-lg border bg-transparent px-3 py-2 placeholder:text-slate-400/70"
-                                                        placeholder="Udin Bageur"
+                                                        placeholder="Full Name"
                                                         name="fullname"
                                                         type="text"
                                                         :class="{

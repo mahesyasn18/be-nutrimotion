@@ -246,7 +246,7 @@ class FoodController extends Controller
                     'nutrition_fact' => $nutritionFact
                 ], 200);
             } else {
-                return redirect()->route('foods')->with('update_success', 'Food and nutrition fact updated successfully.');
+                return redirect()->route('foods')->with('edit_success', 'Food and nutrition fact updated successfully.');
             }
         } catch (\Exception $e) {
             if ($request->expectsJson()) {
@@ -255,7 +255,7 @@ class FoodController extends Controller
                     'error' => $e->getMessage()
                 ], 500);
             } else {
-                return redirect()->route('edit-food-form', $id)->with('update_failed', 'Failed to update food and nutrition fact.');
+                return redirect()->route('edit-food-form', $id)->with('edit_failed', 'Failed to update food and nutrition fact.');
             }
         }
     }

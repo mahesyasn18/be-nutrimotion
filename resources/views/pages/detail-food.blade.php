@@ -64,7 +64,6 @@
                             </p>
                         </div>
                     </div>
-                    <hr class="border">
                     <div class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter">
                         <i class='bx bx-barcode-reader text-2xl'></i>
                         <div class="flex space-x-1 text-xs leading-6">
@@ -193,11 +192,7 @@
                                 </p>
                                 <div class="mt-6 flex justify-center space-x-1 font-inter">
                                     <p class="text-4xl font-medium text-green-600 dark:text-navy-100">
-                                        @if ($food->nutritionFact?->$nutri ?? NULL === NULL)
-                                            0
-                                        @else
-                                            {{ $food->nutritionFact?->$nutri ?? 0 }}
-                                        @endif
+                                        {{ $food->nutritionFact->$nutri ?? 0 }}
                                     </p>
                                     <p class="mt-1 font-normal text-xs text-slate-500 dark:text-navy-100">
                                         gram
@@ -208,6 +203,7 @@
                     @endforeach
                 </div>
             </div>
+
         </div>
     </main>
 </x-app-layout>

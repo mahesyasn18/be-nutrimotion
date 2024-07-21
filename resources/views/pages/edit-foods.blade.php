@@ -1,4 +1,4 @@
-<x-app-layout title="Add Data User" is-header-blur="true">
+`<x-app-layout title="Edit Data Food" is-header-blur="true">
     <!-- Main Content Wrapper -->
     <main class="main-content w-full px-[var(--margin-x)] pb-8">
         <!-- Notification -->
@@ -44,7 +44,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                     <li class="flex items-center space-x-2">
-                        <a class="text-primary hover:underline" href="{{ route('edit-food-form', $food->id) }}">Edit Food</a> 
+                        <a class="text-primary hover:underline" href="{{ route('edit-food-form', $food->id) }}">{{ $food->food_name }}</a> 
                     </li>
                 </ul>
             </div>
@@ -143,12 +143,6 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="mt-4">
-                                    <span>Images</span>
-                                    <div class="filepond fp-bordered fp-bg-filled">
-                                        <input class="mt-1.5" type="file" name="picture" id="picture"/>
-                                    </div>
-                                </div>
         
                                 <div class="flex justify-end space-x-2 mt-10">
                                     <button type="button" @click="step = 2"
@@ -175,172 +169,172 @@
                                     <label class="block col-span-2">
                                         <span>Kalori (kkal)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="kalori" id="kalori" placeholder="Calories..." type="number" />
+                                               name="kalori" id="kalori" value="{{ old('kalori', $food->nutritionFact->kalori) }}" placeholder="Calories..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Lemak Total (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="lemak_total" id="lemak_total" placeholder="Total Fat..." type="number" />
+                                               name="lemak_total" id="lemak_total" value="{{ old('lemak_total', $food->nutritionFact->lemak_total) }}" placeholder="Total Fat..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Lemak Jenuh (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="lemak_jenuh" id="lemak_jenuh" placeholder="Saturated Fat..." type="number" />
+                                               name="lemak_jenuh" id="lemak_jenuh" value="{{ old('lemak_jenuh', $food->nutritionFact->lemak_jenuh) }}" placeholder="Saturated Fat..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Protein (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="protein" id="protein" placeholder="Protein..." type="number" />
+                                               name="protein" id="protein" value="{{ old('protein', $food->nutritionFact->protein) }}" placeholder="Protein..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Total Karbohidrat (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="karbohidrat_total" id="karbohidrat_total" placeholder="Total Carbohydrate..." type="number" />
+                                               name="karbohidrat_total" id="karbohidrat_total" value="{{ old('karbohidrat_total', $food->nutritionFact->karbohidrat_total) }}" placeholder="Total Carbohydrate..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Gula (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="gula" id="gula" placeholder="Sugar..." type="number" />
+                                               name="gula" id="gula" value="{{ old('gula', $food->nutritionFact->gula) }}" placeholder="Sugar..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Garam (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="garam" id="garam" placeholder="Salt..." type="number" />
+                                               name="garam" id="garam" value="{{ old('garam', $food->nutritionFact->garam) }}" placeholder="Salt..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Serat (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="serat" id="serat" placeholder="Fiber..." type="number" />
+                                               name="serat" id="serat" value="{{ old('serat', $food->nutritionFact->serat) }}" placeholder="Fiber..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Vitamin A (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="vit_a" id="vit_a" placeholder="Vitamin A..." type="number" />
+                                               name="vit_a" id="vit_a" value="{{ old('vit_a', $food->nutritionFact->vit_a) }}" placeholder="Vitamin A..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Vitamin C (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="vit_c" id="vit_c" placeholder="Vitamin C..." type="number" />
+                                               name="vit_c" id="vit_c" value="{{ old('vit_c', $food->nutritionFact->vit_c) }}" placeholder="Vitamin C..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Vitamin D (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="vit_d" id="vit_d" placeholder="Vitamin D..." type="number" />
+                                               name="vit_d" id="vit_d" value="{{ old('vit_d', $food->nutritionFact->vit_d) }}" placeholder="Vitamin D..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Vitamin E (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="vit_e" id="vit_e" placeholder="Vitamin E..." type="number" />
+                                               name="vit_e" id="vit_e" value="{{ old('vit_e', $food->nutritionFact->vit_e) }}" placeholder="Vitamin E..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Vitamin K (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="vit_k" id="vit_k" placeholder="Vitamin K..." type="number" />
+                                               name="vit_k" id="vit_k" value="{{ old('vit_k', $food->nutritionFact->vit_k) }}" placeholder="Vitamin K..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Vitamin B1 (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="vit_b1" id="vit_b1" placeholder="Vitamin B1..." type="number" />
+                                               name="vit_b1" id="vit_b1" value="{{ old('vit_b1', $food->nutritionFact->vit_b1) }}" placeholder="Vitamin B1..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Vitamin B2 (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="vit_b2" id="vit_b2" placeholder="Vitamin B2..." type="number" />
+                                               name="vit_b2" id="vit_b2" value="{{ old('vit_b2', $food->nutritionFact->vit_b2) }}" placeholder="Vitamin B2..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Vitamin B3 (mg)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="vit_b3" id="vit_b3" placeholder="Vitamin B3..." type="number" />
+                                               name="vit_b3" id="vit_b3" value="{{ old('vit_b3', $food->nutritionFact->vit_b3) }}" placeholder="Vitamin B3..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Vitamin B5 (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="vit_b5" id="vit_b5" placeholder="Vitamin B5..." type="number" />
+                                               name="vit_b5" id="vit_b5" value="{{ old('vit_b5', $food->nutritionFact->vit_b5) }}" placeholder="Vitamin B5..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Vitamin B6 (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="vit_b6" id="vit_b6" placeholder="Vitamin B6..." type="number" />
+                                               name="vit_b6" id="vit_b6" value="{{ old('vit_b6', $food->nutritionFact->vit_b6) }}" placeholder="Vitamin B6..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Vitamin B12 (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="vit_b12" id="vit_b12" placeholder="Vitamin B12..." type="number" />
+                                               name="vit_b12" id="vit_b12" value="{{ old('vit_b12', $food->nutritionFact->vit_b12) }}" placeholder="Vitamin B12..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Biotin (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="biotin" id="biotin" placeholder="Biotin..." type="number" />
+                                               name="biotin" id="biotin" value="{{ old('biotin', $food->nutritionFact->biotin) }}" placeholder="Biotin..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Kolin (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="kolin" id="kolin" placeholder="Kolin..." type="number" />
+                                               name="kolin" id="kolin" value="{{ old('kolin', $food->nutritionFact->kolin) }}" placeholder="Kolin..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Kalsium (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="kalsium" id="kalsium" placeholder="Calcium..." type="number" />
+                                               name="kalsium" id="kalsium" value="{{ old('kalsium', $food->nutritionFact->kalsium) }}" placeholder="Calcium..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Fosfor (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="fosfor" id="fosfor" placeholder="Fosfor..." type="number" />
+                                               name="fosfor" id="fosfor" value="{{ old('fosfor', $food->nutritionFact->fosfor) }}" placeholder="Fosfor..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Magnesium (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="magnesium" id="magnesium" placeholder="Magnesium..." type="number" />
+                                               name="magnesium" id="magnesium" value="{{ old('magnesium', $food->nutritionFact->magnesium) }}" placeholder="Magnesium..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Natirum (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="natirum" id="natrium" placeholder="Natrium..." type="number" />
+                                               name="natirum" id="natrium" value="{{ old('natrium', $food->nutritionFact->natrium) }}" placeholder="Natrium..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Kalium (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="kalium" id="kalium" placeholder="Kalium..." type="number" />
+                                               name="kalium" id="kalium" value="{{ old('kalium', $food->nutritionFact->kalium) }}" placeholder="Kalium..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Mangan (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="mangan" id="mangan" placeholder="Mangan..." type="number" />
+                                               name="mangan" id="mangan" value="{{ old('mangan', $food->nutritionFact->mangan) }}" placeholder="Mangan..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Tembaga (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="tembaga" id="tembaga" placeholder="Tembaga..." type="number" />
+                                               name="tembaga" id="tembaga" value="{{ old('tembaga', $food->nutritionFact->tembaga) }}" placeholder="Tembaga..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Kromium (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="kromium" id="kromium" placeholder="Kromium..." type="number" />
+                                               name="kromium" id="kromium" value="{{ old('kromium', $food->nutritionFact->kromium) }}" placeholder="Kromium..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Besi (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="besi" id="besi" placeholder="Besi..." type="number" />
+                                               name="besi" id="besi" value="{{ old('besi', $food->nutritionFact->besi) }}" placeholder="Besi..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Iodium (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="iodium" id="iodium" placeholder="Iodium..." type="number" />
+                                               name="iodium" id="iodium" value="{{ old('iodium', $food->nutritionFact->iodium) }}" placeholder="Iodium..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Seng (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="seng" id="seng" placeholder="Seng..." type="number" />
+                                               name="seng" id="seng" value="{{ old('seng', $food->nutritionFact->seng) }}" placeholder="Seng..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Selenium (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="selenium" id="selenium" placeholder="Selenium..." type="number" />
+                                               name="selenium" id="selenium" value="{{ old('selenium', $food->nutritionFact->selenium) }}" placeholder="Selenium..." type="number" />
                                     </label>
                                     <label class="block">
                                         <span>Fluor (g)</span>
                                         <input class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                               name="fluor" id="fluor" placeholder="fluor..." type="number" />
+                                               name="fluor" id="fluor" value="{{ old('fluor', $food->nutritionFact->fluor) }}" placeholder="fluor..." type="number" />
                                     </label>                                    
                                 </div>
         

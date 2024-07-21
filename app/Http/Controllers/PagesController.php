@@ -90,7 +90,6 @@ class PagesController extends Controller
         }
 
         $nutritionFact = $food->nutritionFact;
-
         $totalNutrition = 0;
 
         // List of columns to exclude from the total calculation
@@ -118,7 +117,6 @@ class PagesController extends Controller
 
 
 
-
     public function viewFoodForm()
     {
         return view('pages/add-foods');
@@ -138,39 +136,40 @@ class PagesController extends Controller
     }
 
 
-    public function viewNutritions(Request $request)
-    {
-        $columns = Schema::getColumnListing('nutrition_facts');
-        $excludeColumns = ['food_id', 'per_serving', 'created_at', 'updated_at'];
+    // public function viewNutritions(Request $request)
+    // {
+    //     $columns = Schema::getColumnListing('nutrition_facts');
+    //     $excludeColumns = ['food_id', 'per_serving', 'created_at', 'updated_at'];
 
-        // Filter columns
-        $columns = array_filter($columns, function($column) use ($excludeColumns) {
-            return !in_array($column, $excludeColumns);
-        });
+    //     // Filter columns
+    //     $columns = array_filter($columns, function($column) use ($excludeColumns) {
+    //         return !in_array($column, $excludeColumns);
+    //     });
 
-        $selectedColumn = $request->input('column'); // Use input() instead of query()
+    //     $selectedColumn = $request->input('column'); // Use input() instead of query()
 
-        // Validate the selected column
-        if (!in_array($selectedColumn, $columns)) {
-            $selectedColumn = null; // or set a default column
-        }
+    //     // Validate the selected column
+    //     if (!in_array($selectedColumn, $columns)) {
+    //         $selectedColumn = null; // or set a default column
+    //     }
 
-        $nutritionsQuery = NutritionFact::with('food');
+    //     $nutritionsQuery = NutritionFact::with('food');
         
-        if ($selectedColumn) {
-            $nutritionsQuery->whereNotNull($selectedColumn);
-        }
+    //     if ($selectedColumn) {
+    //         $nutritionsQuery->whereNotNull($selectedColumn);
+    //     }
 
-        $nutritions = $nutritionsQuery->get();
+    //     $nutritions = $nutritionsQuery->get();
 
-        return view('pages/nutritions', compact('nutritions', 'columns', 'selectedColumn'));
-    }
+    //     return view('pages/nutritions', compact('nutritions', 'columns', 'selectedColumn'));
+    // }
 
 
 
     public function viewActivities()
     {
-        return view('pages/activities   ');
+        $activities = Activity::all();
+        return view('pages/activities', compact('activities'));
     }
 
 
