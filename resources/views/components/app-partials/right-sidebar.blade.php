@@ -1,4 +1,4 @@
-<div x-show="$store.global.isRightSidebarExpanded" @keydown.window.escape="$store.global.isRightSidebarExpanded = false">
+{{-- <div x-show="$store.global.isRightSidebarExpanded" @keydown.window.escape="$store.global.isRightSidebarExpanded = false">
     <div class="fixed inset-0 z-[150] bg-slate-900/60 transition-opacity duration-200"
         @click="$store.global.isRightSidebarExpanded = false" x-show="$store.global.isRightSidebarExpanded"
         x-transition:enter="ease-out" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
@@ -1058,4 +1058,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}

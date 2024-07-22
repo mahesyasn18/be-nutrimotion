@@ -1,4 +1,4 @@
-<div x-show="$store.breakpoints.isXs && $store.global.isSearchbarActive" x-transition:enter="easy-out transition-all"
+{{-- <div x-show="$store.breakpoints.isXs && $store.global.isSearchbarActive" x-transition:enter="easy-out transition-all"
     x-transition:enter-start="opacity-0 scale-105" x-transition:enter-end="opacity-100 scale-100"
     x-transition:leave="easy-in transition-all" x-transition:leave-start="opacity-100 scale-100"
     x-transition:leave-end="opacity-0 scale-95"
@@ -285,4 +285,4 @@
             </a>
         </div>
     </div>
-</div>
+</div> --}}

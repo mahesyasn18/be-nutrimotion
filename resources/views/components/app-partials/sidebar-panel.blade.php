@@ -1,4 +1,4 @@
-<div class="sidebar-panel">
+{{-- <div class="sidebar-panel">
     <div class="flex h-full grow flex-col bg-white pl-[var(--main-sidebar-width)] dark:bg-navy-750">
         <!-- Sidebar Panel Header -->
         <div class="flex h-18 w-full items-center justify-between pl-4 pr-1">
@@ -69,4 +69,4 @@
             @endforeach
         </div>
     </div>
-</div>
+</div> --}}
