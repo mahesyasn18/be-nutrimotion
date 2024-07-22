@@ -114,9 +114,6 @@ class PagesController extends Controller
     }
 
 
-
-
-
     public function viewFoodForm()
     {
         return view('pages/add-foods');
@@ -172,43 +169,35 @@ class PagesController extends Controller
         return view('pages/activities', compact('activities'));
     }
 
+    public function viewActivityForm()
+    {
+        return view('pages/add-activities');
+    }
 
+    public function viewActivityUpdateForm(Request $request, $id)
+    {
+        $activity = Activity::find($id);
 
+        if (!$activity) {
+            return view('pages/layouts-error-404-2');
+        }
+        return view('pages/edit-activities', compact('activity'));
+    }
 
+    public function viewActivityDetail(Request $request, $id)
+    {
+        // Fetch the activity with related detailDailyActivity and their associated dailyActivity and user
+        $activity = Activity::with('detailDailyActivity.dailyActivity.user')->find($id);
 
+        if (!$activity) {
+            return view('pages.layouts-error-404-2');
+        }
 
+        // Calculate total calories
+        $totalCalories = $activity->jumlah_kalori_rendah + $activity->jumlah_kalori_sedang + $activity->jumlah_kalori_tinggi;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return view('pages.detail-activity', compact('activity', 'totalCalories'));
+    }
 
     public function elementsAvatar()
     {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ActivityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -57,6 +58,13 @@ Route::middleware('auth')->group(function () {
 
     //Activities
     Route::get('/activities', [PagesController::class, 'viewActivities'])->name('activities');
+    Route::get('/activities/add-activity', [PagesController::class, 'viewActivityForm'])->name('add-activity-form');
+    Route::get('/activities/edit-activity/{id}', [PagesController::class, 'viewActivityUpdateForm'])->name('edit-activity-form');
+    Route::post('/activities/add-activity', [ActivityController::class, 'store'])->name('activity-store');
+    Route::put('/activities/edit-activity/{id}', [ActivityController::class, 'update'])->name('activity-update');
+    Route::delete('/activities/{id}', [ActivityController::class, 'destroy'])->name('activity-destroy');
+
+    Route::get('/activities/activity-detail/{id}', [PagesController::class, 'viewActivityDetail'])->name('activity-detail');
 
     Route::get('/elements/avatar', [PagesController::class, 'elementsAvatar'])->name('elements/avatar');
     Route::get('/elements/alert', [PagesController::class, 'elementsAlert'])->name('elements/alert');

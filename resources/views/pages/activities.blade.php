@@ -62,7 +62,7 @@
                 </ul>
             </div>
     
-            <a href="#">
+            <a href="{{ route('add-activity-form') }}">
                 <button
                     class="btn space-x-2 bg-primary font-medium text-white shadow-lg shadow-primary/50 hover:bg-[#458d51] dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-50" fill="none" viewBox="0 0 24 24"
@@ -146,8 +146,8 @@
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                         <div class="avatar flex">
-                                            @if ($act->picture)
-                                                <img class="rounded-full" src="{{ $food->picture }}" alt="Food Image">
+                                            @if ($act->photo)
+                                                <img class="rounded-full" src="{{ $act->photo }}" alt="Activity Image">
                                             @else
                                                 <img class="rounded-full" src="{{asset('images/illustrations/activity.png')}}" alt="avatar"/>
                                             @endif
@@ -196,17 +196,17 @@
                                                 <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
                                                     <ul>
                                                         <li>
-                                                            <a href="#" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">
+                                                            <a href="{{ route('edit-activity-form', $act->id) }}" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">
                                                                 Edit
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="#" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">
+                                                            <a href="{{ route('activity-detail', $act->id) }}" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">
                                                                 Detail
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <form action="#" method="POST" onsubmit="return confirm('Are you sure you want to delete this food?');">
+                                                            <form action="{{ route('activity-destroy', $act->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this activity?');">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">

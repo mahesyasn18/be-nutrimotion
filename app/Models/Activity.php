@@ -22,4 +22,9 @@ class Activity extends Model
     {
         return $this->hasMany(DetailDailyActivity::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
