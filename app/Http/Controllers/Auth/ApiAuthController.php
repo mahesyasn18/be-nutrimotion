@@ -42,32 +42,36 @@ class ApiAuthController extends Controller
                 'date'
             ]
         ]);
-        if ($validator->fails())
-        {
+
+        if ($validator->fails()) {
             return response(['errors'=>$validator->errors()->all()], 422);
         }
-        $request['password']=Hash::make($request['password']);
+
+        $request['password'] = Hash::make($request['password']);
         $request['remember_token'] = Str::random(10);
         $user = User::create($request->toArray());
 
         // hitung daily nutrition
         $currentDate = Carbon::now();
         $age = $currentDate->diffInYears(Carbon::parse($user->birthday));
-            if ($user->gender == 'Laki-laki'){
-                $calori = (10*$user->weight) + (6.25*$user->height) - (5*$age) + 5;
-            }else{
-                $calori = (10*$user->weight) + (6.25*$user->height) - (5*$age) - 161;
-            }
-            $carb = (0.45*$calori)/4;
-            DailyNutrition::create([
-                'user_id' => $user->id,
-                'tanggal' => $currentDate,
-                'kalori' => $calori,
-                'karbohidrat' => (int)$carb,
-                'protein' => (int)$user->weight,
-                'lemak' => (int)$user->weight,
-                'air' => 0,
-            ]);
+
+        if ($user->gender == 'Laki-laki') {
+            $calori = (10 * $user->weight) + (6.25 * $user->height) - (5 * $age) + 5;
+        } else {
+            $calori = (10 * $user->weight) + (6.25 * $user->height) - (5 * $age) - 161;
+        }
+
+        $carb = (0.45 * $calori) / 4;
+
+        DailyNutrition::create([
+            'user_id' => $user->id,
+            'tanggal' => $currentDate,
+            'kalori' => (int)$calori, // Cast to integer
+            'karbohidrat' => (int)$carb, // Cast to integer
+            'protein' => (int)$user->weight, // Ensure this is intended as integer
+            'lemak' => (int)$user->weight, // Ensure this is intended as integer
+            'air' => 0,
+        ]);
 
         $token = $user->createToken('Bearer')->accessToken;
 
@@ -81,9 +85,11 @@ class ApiAuthController extends Controller
             "gender" => $user->gender,
             "birthday" => $user->birthday,
             'token' => $token,
-            'message' => 'Registrasi berhasil',];
+            'message' => 'Registrasi berhasil',
+        ];
         return response($response, 200);
     }
+
 
     public function updateProfile (Request $request) {
         $validator = Validator::make($request->all(), [
