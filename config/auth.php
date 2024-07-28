@@ -49,6 +49,10 @@ return [
             'provider'=>'admins',
             'hash'=>false,
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
 
     /*

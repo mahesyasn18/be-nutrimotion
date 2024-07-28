@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\DailyActivity;
+use App\Models\DetailDailyActivity;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,6 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(FoodSeeder::class);
+        $this->call([
+            AdminSeeder::class,
+            UserSeeder::class,
+            FoodSeeder::class,
+            ActivitySeeder::class,
+            DailyActivitySeeder::class,
+            DetailDailyActivity::class,
+        ]);
     }
 }

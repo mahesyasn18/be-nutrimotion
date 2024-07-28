@@ -28,8 +28,8 @@ Route::post('/login', [ApiAuthController::class, 'login'])->name('login.api');
 Route::post('/registers', [ApiAuthController::class, 'register'])->name('register.api');
 Route::post('/is-emaill-exist', [ApiAuthController::class, 'checkEmail']);
 
-Route::post('/login-admin', [ApiAuthController::class, 'loginadmin'])->name('login.api');
-Route::post('/register-admin', [ApiAuthController::class, 'registeradmin'])->name('register.api');
+Route::post('/login-admin', [ApiAuthController::class, 'loginadmin'])->name('login.api.admin');
+Route::post('/register-admin', [ApiAuthController::class, 'registeradmin'])->name('register.api.admin');
 
 // user group
 Route::group(['middleware' => ['cors', 'json.response','auth:api']], function () {
