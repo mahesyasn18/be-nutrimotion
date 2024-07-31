@@ -19,6 +19,8 @@ use App\Http\Controllers\Admin\FoodController;
 |
 */
 
+Route::get('/', [PagesController::class, 'viewLandingPage'])->name('index');
+
 Route::middleware('guest')->group(function () {
     Route::get('/login', [\App\Http\Controllers\AuthController::class, 'loginView'])->name('loginView');
     Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login');
@@ -28,8 +30,6 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
-    Route::get('/', [PagesController::class, 'viewDashboard'])->name('index');
-
 
     //Dashboards
     Route::get('/dashboard', [PagesController::class, 'viewDashboard'])->name('dashboard');

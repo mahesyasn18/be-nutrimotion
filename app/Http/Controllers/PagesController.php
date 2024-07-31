@@ -12,14 +12,18 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PagesController extends Controller
 {
+    public function viewLandingPage()
+    {
+        return view('pages/landing-page');
+    }
+
     public function viewDashboard()
     {
-        $routePrefix = 'dashboard';
         $userCount = User::count();
         $foodCount = Food::count();
         $activityCount = Activity::count();
 
-        return view('pages/dashboard', compact('userCount', 'foodCount', 'activityCount', 'routePrefix'));
+        return view('pages/dashboard', compact('userCount', 'foodCount', 'activityCount'));
     }
 
     //Uers

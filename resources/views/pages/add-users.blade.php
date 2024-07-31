@@ -3,7 +3,7 @@
     <main class="main-content w-full px-[var(--margin-x)] pb-8">
         <div class="mt-6 flex flex-col items-center justify-between space-y-2 text-center sm:flex-row sm:space-y-0 sm:text-left">
             <div class="flex items-center space-x-4 py-5 lg:py-6">
-                <a class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-xl" href="{{ route('index') }}">
+                <a class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-xl" href="{{ route('dashboard') }}">
                     Nutrimotion
                 </a>
                 <svg x-ignore xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
